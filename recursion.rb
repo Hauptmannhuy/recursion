@@ -27,3 +27,29 @@ end
 
 fib_rec(8)
 
+def merge(left,right)
+ sorted = []
+  loop do
+  break if left.empty? || right.empty?
+    if left[0] <= right[0]
+      sorted << left.shift
+    else
+      sorted << right.shift
+  end
+end
+  sorted + left + right
+end
+
+def merge_sort(array)
+ if array.length == 1 || array.length == 0
+  return array
+else
+  left = merge_sort(array.slice(0,array.length/2))
+  right = merge_sort(array.slice(array.length/2,array.length))
+  return merge(merge_sort(left),merge_sort(right))
+ end
+
+end
+
+
+merge_sort([3,5,4,2,1,6])
